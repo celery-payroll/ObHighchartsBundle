@@ -23,11 +23,11 @@ class PaneTest extends TestCase
 
         // pixel based
         $chart->pane->center(array(50, 100));
-        $this->assertRegExp('/pane: \{"center":\[50,100\]\}/', $chart->render());
+        $this->assertMatchesRegularExpression('/pane: \{"center":\[50,100\]\}/', $chart->render());
 
         // percentage based
         $chart->pane->center(array('50%', '40%'));
-        $this->assertRegExp('/pane: \{"center":\["50%","40%"\]\}/', $chart->render());
+        $this->assertMatchesRegularExpression('/pane: \{"center":\["50%","40%"\]\}/', $chart->render());
     }
 
     public function testEndAngle()
@@ -35,7 +35,7 @@ class PaneTest extends TestCase
         $chart = new Highchart();
 
         $chart->pane->endAngle(5);
-        $this->assertRegExp('/pane: \{"endAngle":5\}/', $chart->render());
+        $this->assertMatchesRegularExpression('/pane: \{"endAngle":5\}/', $chart->render());
     }
 
     public function testStartAngle()
@@ -43,6 +43,6 @@ class PaneTest extends TestCase
         $chart = new Highchart();
 
         $chart->pane->startAngle(5);
-        $this->assertRegExp('/pane: \{"startAngle":5\}/', $chart->render());
+        $this->assertMatchesRegularExpression('/pane: \{"startAngle":5\}/', $chart->render());
     }
 }

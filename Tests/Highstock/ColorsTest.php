@@ -13,6 +13,6 @@ class ColorsTest extends TestCase
 
         $colors = array('#FF0000', '#00FF00', '#0000FF');
         $chart->colors($colors);
-        $this->assertRegExp('/colors: \[\["#FF0000","#00FF00","#0000FF"\]\]/', $chart->render());
+        $this->assertMatchesRegularExpression('/colors: \[\["#FF0000","#00FF00","#0000FF"\]\]/', $chart->render());
     }
 }

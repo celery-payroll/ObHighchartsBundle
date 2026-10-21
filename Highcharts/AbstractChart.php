@@ -4,6 +4,7 @@ namespace Ob\HighchartsBundle\Highcharts;
 
 use Laminas\Json\Json;
 
+#[\AllowDynamicProperties]
 abstract class AbstractChart
 {
     // Default options

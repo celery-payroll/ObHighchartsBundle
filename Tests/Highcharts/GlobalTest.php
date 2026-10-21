@@ -18,10 +18,10 @@ class GlobalTest extends TestCase
         $chart = new Highchart();
 
         $chart->global->useUTC("true");
-        $this->assertRegExp('/global: \{"useUTC":"true"\}/', $chart->render());
+        $this->assertMatchesRegularExpression('/global: \{"useUTC":"true"\}/', $chart->render());
 
         $chart->global->useUTC("false");
-        $this->assertRegExp('/global: \{"useUTC":"false"\}/', $chart->render());
+        $this->assertMatchesRegularExpression('/global: \{"useUTC":"false"\}/', $chart->render());
     }
 
     /**
@@ -32,6 +32,6 @@ class GlobalTest extends TestCase
         $chart = new Highchart();
 
         $chart->lang->noData("No data to display");
-        $this->assertRegExp('/"noData":"No data to display"/', $chart->render());
+        $this->assertMatchesRegularExpression('/"noData":"No data to display"/', $chart->render());
     }
 }

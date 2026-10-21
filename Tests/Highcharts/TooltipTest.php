@@ -3,7 +3,7 @@
 namespace Ob\HighchartsBundle\Tests\Highcharts;
 
 use Ob\HighchartsBundle\Highcharts\Highchart;
-use Zend\Json\Expr;
+use Laminas\Json\Expr;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -19,10 +19,10 @@ class TooltipTest extends TestCase
         $chart = new Highchart();
 
         $chart->tooltip->animation("true");
-        $this->assertRegExp('/tooltip: \{"animation":"true"\}/', $chart->render());
+        $this->assertMatchesRegularExpression('/tooltip: \{"animation":"true"\}/', $chart->render());
 
         $chart->tooltip->animation("false");
-        $this->assertRegExp('/tooltip: \{"animation":"false"\}/', $chart->render());
+        $this->assertMatchesRegularExpression('/tooltip: \{"animation":"false"\}/', $chart->render());
     }
 
     /**
@@ -33,7 +33,7 @@ class TooltipTest extends TestCase
         $chart = new Highchart();
 
         $chart->tooltip->backgroundColor("rgba(255, 255, 255, .85)");
-        $this->assertRegExp('/tooltip: \{"backgroundColor":"rgba\(255, 255, 255, .85\)"\}/', $chart->render());
+        $this->assertMatchesRegularExpression('/tooltip: \{"backgroundColor":"rgba\(255, 255, 255, .85\)"\}/', $chart->render());
     }
 
     /**
@@ -44,13 +44,13 @@ class TooltipTest extends TestCase
         $chart = new Highchart();
 
         $chart->tooltip->borderColor('null');
-        $this->assertRegExp('/tooltip: \{"borderColor":"null"\}/', $chart->render());
+        $this->assertMatchesRegularExpression('/tooltip: \{"borderColor":"null"\}/', $chart->render());
 
         $chart->tooltip->borderColor('auto');
-        $this->assertRegExp('/tooltip: \{"borderColor":"auto"\}/', $chart->render());
+        $this->assertMatchesRegularExpression('/tooltip: \{"borderColor":"auto"\}/', $chart->render());
 
         $chart->tooltip->borderColor('rgba(255, 255, 255, .85)');
-        $this->assertRegExp('/tooltip: \{"borderColor":"rgba\(255, 255, 255, .85\)"\}/', $chart->render());
+        $this->assertMatchesRegularExpression('/tooltip: \{"borderColor":"rgba\(255, 255, 255, .85\)"\}/', $chart->render());
     }
 
     /**
@@ -61,10 +61,10 @@ class TooltipTest extends TestCase
         $chart = new Highchart();
 
         $chart->tooltip->borderRadius(5);
-        $this->assertRegExp('/tooltip: \{"borderRadius":5\}/', $chart->render());
+        $this->assertMatchesRegularExpression('/tooltip: \{"borderRadius":5\}/', $chart->render());
 
         $chart->tooltip->borderRadius("5");
-        $this->assertRegExp('/tooltip: \{"borderRadius":"5"\}/', $chart->render());
+        $this->assertMatchesRegularExpression('/tooltip: \{"borderRadius":"5"\}/', $chart->render());
     }
 
     /**
@@ -75,10 +75,10 @@ class TooltipTest extends TestCase
         $chart = new Highchart();
 
         $chart->tooltip->borderWidth(5);
-        $this->assertRegExp('/tooltip: \{"borderWidth":5\}/', $chart->render());
+        $this->assertMatchesRegularExpression('/tooltip: \{"borderWidth":5\}/', $chart->render());
 
         $chart->tooltip->borderWidth("5");
-        $this->assertRegExp('/tooltip: \{"borderWidth":"5"\}/', $chart->render());
+        $this->assertMatchesRegularExpression('/tooltip: \{"borderWidth":"5"\}/', $chart->render());
     }
 
     /**
@@ -89,14 +89,14 @@ class TooltipTest extends TestCase
         $chart = new Highchart();
 
         $chart->tooltip->enabled("true");
-        $this->assertRegExp('/tooltip: \{"enabled":"true"\}/', $chart->render());
+        $this->assertMatchesRegularExpression('/tooltip: \{"enabled":"true"\}/', $chart->render());
 
         $chart->tooltip->enabled("false");
-        $this->assertRegExp('/tooltip: \{"enabled":"false"\}/', $chart->render());
+        $this->assertMatchesRegularExpression('/tooltip: \{"enabled":"false"\}/', $chart->render());
     }
 
     /**
-     * Formatter option (Zend Json Expr)
+     * Formatter option (Laminas Json Expr)
      */
     public function testFormatter()
     {
@@ -105,7 +105,7 @@ class TooltipTest extends TestCase
         $func = new Expr('function () { return 1; }');
 
         $chart->tooltip->formatter($func);
-        $this->assertRegExp('/tooltip: \{"formatter":function\s?\(\)\s?\{ return 1; \}\}/', $chart->render());
+        $this->assertMatchesRegularExpression('/tooltip: \{"formatter":function\s?\(\)\s?\{ return 1; \}\}/', $chart->render());
     }
 
     /**
@@ -116,9 +116,9 @@ class TooltipTest extends TestCase
         $chart = new Highchart();
 
         $chart->tooltip->shadow("true");
-        $this->assertRegExp('/tooltip: \{"shadow":"true"\}/', $chart->render());
+        $this->assertMatchesRegularExpression('/tooltip: \{"shadow":"true"\}/', $chart->render());
 
         $chart->tooltip->shadow("false");
-        $this->assertRegExp('/tooltip: \{"shadow":"false"\}/', $chart->render());
+        $this->assertMatchesRegularExpression('/tooltip: \{"shadow":"false"\}/', $chart->render());
     }
 }

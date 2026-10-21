@@ -21,7 +21,7 @@ class RangeSelectorTest extends TestCase
         $spacing = 0;
         $this->range->buttonSpacing($spacing);
         $this->assertEquals($spacing, $this->range->buttonSpacing);
-        $this->assertRegExp('/"buttonSpacing":0/', $this->chart->render());
+        $this->assertMatchesRegularExpression('/"buttonSpacing":0/', $this->chart->render());
     }
 
     public function testButtonTheme()
@@ -39,18 +39,18 @@ class RangeSelectorTest extends TestCase
 
         $this->range->buttons($buttons);
         $this->assertEquals($buttons, $this->range->buttons);
-        $this->assertRegExp('/"buttons":\[{"type":"month","count":3,"text":"3m"}\]/', $this->chart->render());
+        $this->assertMatchesRegularExpression('/"buttons":\[{"type":"month","count":3,"text":"3m"}\]/', $this->chart->render());
     }
 
     public function testEnabled()
     {
         $this->range->enabled(true);
         $this->assertTrue($this->range->enabled);
-        $this->assertRegExp('/"enabled":true/', $this->chart->render());
+        $this->assertMatchesRegularExpression('/"enabled":true/', $this->chart->render());
 
         $this->range->enabled(false);
         $this->assertFalse($this->range->enabled);
-        $this->assertRegExp('/"enabled":false/', $this->chart->render());
+        $this->assertMatchesRegularExpression('/"enabled":false/', $this->chart->render());
     }
 
     public function testInputBoxBorderColor()
@@ -58,7 +58,7 @@ class RangeSelectorTest extends TestCase
         $color = 'silver';
         $this->range->inputBoxBorderColor($color);
         $this->assertEquals($color, $this->range->inputBoxBorderColor);
-        $this->assertRegExp('/"inputBoxBorderColor":"silver"/', $this->chart->render());
+        $this->assertMatchesRegularExpression('/"inputBoxBorderColor":"silver"/', $this->chart->render());
     }
 
     public function testInputBoxHeight()
@@ -66,7 +66,7 @@ class RangeSelectorTest extends TestCase
         $height = 16;
         $this->range->inputBoxHeight($height);
         $this->assertEquals($height, $this->range->inputBoxHeight);
-        $this->assertRegExp('/"inputBoxHeight":16/', $this->chart->render());
+        $this->assertMatchesRegularExpression('/"inputBoxHeight":16/', $this->chart->render());
     }
 
     public function testInputBoxWidth()
@@ -74,7 +74,7 @@ class RangeSelectorTest extends TestCase
         $width = 16;
         $this->range->inputBoxWidth($width);
         $this->assertEquals($width, $this->range->inputBoxWidth);
-        $this->assertRegExp('/"inputBoxWidth":16/', $this->chart->render());
+        $this->assertMatchesRegularExpression('/"inputBoxWidth":16/', $this->chart->render());
     }
 
     public function testInputDateFormat()
@@ -82,7 +82,7 @@ class RangeSelectorTest extends TestCase
         $format = '%b %e, %Y';
         $this->range->inputDateFormat($format);
         $this->assertEquals($format, $this->range->inputDateFormat);
-        $this->assertRegExp('/"inputDateFormat":"%b %e, %Y"/', $this->chart->render());
+        $this->assertMatchesRegularExpression('/"inputDateFormat":"%b %e, %Y"/', $this->chart->render());
     }
 
     public function testInputDateParser()
@@ -95,18 +95,18 @@ class RangeSelectorTest extends TestCase
         $format = '%b %e, %Y';
         $this->range->inputEditDateFormat($format);
         $this->assertEquals($format, $this->range->inputEditDateFormat);
-        $this->assertRegExp('/"inputEditDateFormat":"%b %e, %Y"/', $this->chart->render());
+        $this->assertMatchesRegularExpression('/"inputEditDateFormat":"%b %e, %Y"/', $this->chart->render());
     }
 
     public function testinputEnabled()
     {
         $this->range->inputEnabled(true);
         $this->assertTrue($this->range->inputEnabled);
-        $this->assertRegExp('/"inputEnabled":true/', $this->chart->render());
+        $this->assertMatchesRegularExpression('/"inputEnabled":true/', $this->chart->render());
 
         $this->range->inputEnabled(false);
         $this->assertFalse($this->range->inputEnabled);
-        $this->assertRegExp('/"inputEnabled":false/', $this->chart->render());
+        $this->assertMatchesRegularExpression('/"inputEnabled":false/', $this->chart->render());
     }
 
     public function testInputPosition()
@@ -116,7 +116,7 @@ class RangeSelectorTest extends TestCase
         );
         $this->range->position($position);
         $this->assertEquals($position, $this->range->position);
-        $this->assertRegExp('/"position":{"align":"right"}/', $this->chart->render());
+        $this->assertMatchesRegularExpression('/"position":{"align":"right"}/', $this->chart->render());
     }
 
     public function testInputStyle()
@@ -134,6 +134,6 @@ class RangeSelectorTest extends TestCase
         $index = 3;
         $this->range->selected($index);
         $this->assertEquals($index, $this->range->selected);
-        $this->assertRegExp('/"selected":3/', $this->chart->render());
+        $this->assertMatchesRegularExpression('/"selected":3/', $this->chart->render());
     }
 }

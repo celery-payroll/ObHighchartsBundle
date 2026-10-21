@@ -6,6 +6,7 @@ namespace Ob\HighchartsBundle\Highcharts;
  * This class is part of the Ob/HighchartsBundle
  * See Highcharts documentation at http://www.highcharts.com/ref/#chart
  */
+#[\AllowDynamicProperties]
 class ChartOption
 {
     private $option_name;

@@ -6,6 +6,17 @@
 TBD
 
 
+### [1.7.0.2] - 2026-10-21
+
+* Add support for Symfony 6.4 and 7.4
+* Drop support for Symfony < 5.4
+* Drop support for PHP < 8.1
+* Fix PHP 8.2+ dynamic property deprecations in `ChartOption` and `AbstractChart`
+* Extend `Symfony\Component\DependencyInjection\Extension\Extension` instead of the internal HttpKernel one
+* Add native return types to `ObHighchartsExtension::load()` and `HighchartsExtension::getFunctions()`
+* Upgrade `nyholm/symfony-bundle-test` to ^3.1 for the bundle initialization test
+
+
 ### [1.7.0] - 2020-01-12
 
 * Add support for Symfony 5

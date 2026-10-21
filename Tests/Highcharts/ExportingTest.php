@@ -3,7 +3,7 @@
 namespace Ob\HighchartsBundle\Tests\Highcharts;
 
 use Ob\HighchartsBundle\Highcharts\Highchart;
-use Zend\Json\Expr;
+use Laminas\Json\Expr;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -20,15 +20,15 @@ class ExportingTest extends TestCase
 
         // align option (string - left/center/right)
         $chart->exporting->buttons(array('exportButton' => array('align' => 'center')));
-        $this->assertRegExp('/exporting: \{"buttons":\{"exportButton":\{"align":"center"\}\}\}/', $chart->render());
+        $this->assertMatchesRegularExpression('/exporting: \{"buttons":\{"exportButton":\{"align":"center"\}\}\}/', $chart->render());
         $chart->exporting->buttons(array('printButton' => array('align' => 'center')));
-        $this->assertRegExp('/exporting: \{"buttons":\{"printButton":\{"align":"center"\}\}\}/', $chart->render());
+        $this->assertMatchesRegularExpression('/exporting: \{"buttons":\{"printButton":\{"align":"center"\}\}\}/', $chart->render());
 
         // backgroundColor option
         $chart->exporting->buttons(array('exportButton' => array('backgroundColor' => 'blue')));
-        $this->assertRegExp('/exporting: \{"buttons":\{"exportButton":\{"backgroundColor":"blue"\}\}\}/', $chart->render());
+        $this->assertMatchesRegularExpression('/exporting: \{"buttons":\{"exportButton":\{"backgroundColor":"blue"\}\}\}/', $chart->render());
         $chart->exporting->buttons(array('printButton' => array('backgroundColor' => 'blue')));
-        $this->assertRegExp('/exporting: \{"buttons":\{"printButton":\{"backgroundColor":"blue"\}\}\}/', $chart->render());
+        $this->assertMatchesRegularExpression('/exporting: \{"buttons":\{"printButton":\{"backgroundColor":"blue"\}\}\}/', $chart->render());
 
         // borderColor option
         // borderRadius option
@@ -74,10 +74,10 @@ class ExportingTest extends TestCase
         $chart = new Highchart();
 
         $chart->exporting->enabled(true);
-        $this->assertRegExp('/exporting: \{"enabled":true\}/', $chart->render());
+        $this->assertMatchesRegularExpression('/exporting: \{"enabled":true\}/', $chart->render());
 
         $chart->exporting->enabled(false);
-        $this->assertRegExp('/exporting: \{"enabled":false\}/', $chart->render());
+        $this->assertMatchesRegularExpression('/exporting: \{"enabled":false\}/', $chart->render());
     }
 
     /**
@@ -88,7 +88,7 @@ class ExportingTest extends TestCase
         $chart = new Highchart();
         $chart->exporting->filename("graph");
 
-        $this->assertRegExp('/exporting: \{"filename":"graph"\}/', $chart->render());
+        $this->assertMatchesRegularExpression('/exporting: \{"filename":"graph"\}/', $chart->render());
     }
 
     /**
@@ -100,16 +100,16 @@ class ExportingTest extends TestCase
 
         // We need to use a Json Expr or else the slashes are escaped
         $chart->exporting->type(new Expr('"image/png"'));
-        $this->assertRegExp('/exporting: \{"type":"image\/png"\}/', $chart->render());
+        $this->assertMatchesRegularExpression('/exporting: \{"type":"image\/png"\}/', $chart->render());
 
         $chart->exporting->type(new Expr('"image/jpeg"'));
-        $this->assertRegExp('/exporting: \{"type":"image\/jpeg"\}/', $chart->render());
+        $this->assertMatchesRegularExpression('/exporting: \{"type":"image\/jpeg"\}/', $chart->render());
 
         $chart->exporting->type(new Expr('"application/pdf"'));
-        $this->assertRegExp('/exporting: \{"type":"application\/pdf"\}/', $chart->render());
+        $this->assertMatchesRegularExpression('/exporting: \{"type":"application\/pdf"\}/', $chart->render());
 
         $chart->exporting->type(new Expr('"image/svg+xml"'));
-        $this->assertRegExp('/exporting: \{"type":"image\/svg\+xml"\}/', $chart->render());
+        $this->assertMatchesRegularExpression('/exporting: \{"type":"image\/svg\+xml"\}/', $chart->render());
     }
 
     /**
@@ -122,7 +122,7 @@ class ExportingTest extends TestCase
         // We need to use a Json Expr or else the slashes are escaped
         $chart->exporting->url(new Expr('"http://www.google.com"'));
 
-        $this->assertRegExp('/exporting: \{"url":"http:\/\/www.google.com"\}/', $chart->render());
+        $this->assertMatchesRegularExpression('/exporting: \{"url":"http:\/\/www.google.com"\}/', $chart->render());
     }
 
     /**
@@ -133,6 +133,6 @@ class ExportingTest extends TestCase
         $chart = new Highchart();
         $chart->exporting->width(300);
 
-        $this->assertRegExp('/exporting: \{"width":300\}/', $chart->render());
+        $this->assertMatchesRegularExpression('/exporting: \{"width":300\}/', $chart->render());
     }
 }

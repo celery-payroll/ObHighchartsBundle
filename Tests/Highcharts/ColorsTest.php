@@ -19,6 +19,6 @@ class ColorsTest extends TestCase
 
         $colors = array('#FF0000', '#00FF00', '#0000FF');
         $linechart->colors($colors);
-        $this->assertRegExp('/colors: \[\["#FF0000","#00FF00","#0000FF"\]\]/', $linechart->render());
+        $this->assertMatchesRegularExpression('/colors: \[\["#FF0000","#00FF00","#0000FF"\]\]/', $linechart->render());
     }
 }

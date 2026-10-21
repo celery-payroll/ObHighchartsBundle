@@ -16,7 +16,7 @@ class HighchartTest extends TestCase
     public function testJquery()
     {
         $chart = new Highchart();
-        $this->assertRegExp(
+        $this->assertMatchesRegularExpression(
             '/\$\(function\s?\(\)\s?\{\n?\r?\s*var chart = new Highcharts.Chart\(\{\n?\r?\s*\}\);\n?\r?\s*\}\);/',
             $chart->render()
         );
@@ -28,7 +28,7 @@ class HighchartTest extends TestCase
     public function testNoEngine()
     {
         $chart = new Highchart();
-        $this->assertRegExp(
+        $this->assertMatchesRegularExpression(
             '/var chart = new Highcharts.Chart\(\{\n?\r?\s*\}\);/',
             $chart->render(null)
         );
@@ -40,7 +40,7 @@ class HighchartTest extends TestCase
     public function testMooTools()
     {
         $chart = new Highchart();
-        $this->assertRegExp(
+        $this->assertMatchesRegularExpression(
             '/window.addEvent\(\'domready\', function\s?\(\)\s?\{\r?\n?\s*var chart = new Highcharts.Chart\(\{\n?\r?\s*\}\);\n?\r?\s*\}\);/',
             $chart->render('mootools')
         );
@@ -68,7 +68,7 @@ class HighchartTest extends TestCase
         $chart = new Highchart();
 
         $chart->chart->setTitle('Am I IE friendly yet?');
-        $this->assertRegExp(
+        $this->assertMatchesRegularExpression(
             '/\}(?<!,)\n?\r?\s*\}\);\n?\r?\s*\}\);/',
             $chart->render()
         );

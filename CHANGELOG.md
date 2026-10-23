@@ -8,13 +8,14 @@ TBD
 
 ### [1.7.0.2] - 2026-10-21
 
-* Add support for Symfony 6.4 and 7.4
-* Drop support for Symfony < 5.4
-* Drop support for PHP < 8.1
-* Fix PHP 8.2+ dynamic property deprecations in `ChartOption` and `AbstractChart`
+* Support Symfony 5.4, 6.4 and 7.4 only; 6.0-6.3 and 7.0-7.3 are excluded. Symfony 7.4 requires PHP 8.2
+* Require PHP ^8.1 and Twig ^3.0
+* Fix the PHP 8.2+ dynamic property deprecation in `ChartOption`
+* Deprecate setting undeclared options through `AbstractChart::__call()`; they were stored but never rendered
 * Extend `Symfony\Component\DependencyInjection\Extension\Extension` instead of the internal HttpKernel one
 * Add native return types to `ObHighchartsExtension::load()` and `HighchartsExtension::getFunctions()`
-* Upgrade `nyholm/symfony-bundle-test` to ^3.1 for the bundle initialization test
+* Upgrade `nyholm/symfony-bundle-test` to ^3.1 and cover Twig function registration through `symfony/twig-bundle`
+* Add a GitHub Actions matrix for PHP 8.1-8.4 and Symfony 5.4/6.4/7.4, remove the Travis config
 
 
 ### [1.7.0] - 2020-01-12

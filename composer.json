@@ -17,13 +17,17 @@
         "symfony/dependency-injection": "^5.4 || ^6.4 || ^7.4",
         "symfony/config": "^5.4 || ^6.4 || ^7.4",
         "symfony/yaml": "^5.4 || ^6.4 || ^7.4",
-        "twig/twig": "^2.10 || ^3.0",
+        "twig/twig": "^3.0",
         "laminas/laminas-json": "^3.1"
     },
     "require-dev": {
-        "symfony/phpunit-bridge": "^5.4 || ^6.4 || ^7.4",
+        "symfony/phpunit-bridge": "^6.4.10 || ^7.4",
         "symfony/framework-bundle": "^5.4 || ^6.4 || ^7.4",
+        "symfony/twig-bundle": "^5.4 || ^6.4 || ^7.4",
         "nyholm/symfony-bundle-test": "^3.1"
+    },
+    "conflict": {
+        "symfony/error-handler": "<5.4"
     },
     "autoload": {
         "psr-4": { "Ob\\HighchartsBundle\\": "" }

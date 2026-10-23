@@ -4,12 +4,15 @@ namespace Ob\HighchartsBundle\Tests\Highcharts;
 
 use Ob\HighchartsBundle\Highcharts\Highchart;
 use PHPUnit\Framework\TestCase;
+use Symfony\Bridge\PhpUnit\ExpectDeprecationTrait;
 
 /**
  * This class hold Unit tests for the Highchart Class
  */
 class HighchartTest extends TestCase
 {
+    use ExpectDeprecationTrait;
+
     /**
      * Render chart using jQuery
      */
@@ -72,5 +75,33 @@ class HighchartTest extends TestCase
             '/\}(?<!,)\n?\r?\s*\}\);\n?\r?\s*\}\);/',
             $chart->render()
         );
+    }
+
+    /**
+     * Declared chart-level options set through __call must not trigger a deprecation
+     */
+    public function testDeclaredOptionViaMagicCall()
+    {
+        $chart = new Highchart();
+
+        $chart->colorAxis(array('min' => 0));
+        $this->assertSame(array(array('min' => 0)), $chart->colorAxis);
+        $this->assertMatchesRegularExpression('/colorAxis: \{"min":0\}/', $chart->render());
+    }
+
+    /**
+     * Undeclared options are stored but never rendered, so setting one is deprecated
+     *
+     * @group legacy
+     */
+    public function testUndeclaredOptionIsDeprecated()
+    {
+        $this->expectDeprecation('Since ob/highcharts-bundle 1.7.0.2: Setting the undeclared option "accessibility" on Ob\HighchartsBundle\Highcharts\Highchart is deprecated%S');
+
+        $chart = new Highchart();
+        $chart->accessibility(array('enabled' => false));
+
+        $this->assertSame(array(array('enabled' => false)), $chart->accessibility);
+        $this->assertStringNotContainsString('accessibility', $chart->render());
     }
 }

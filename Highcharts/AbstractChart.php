@@ -4,7 +4,6 @@ namespace Ob\HighchartsBundle\Highcharts;
 
 use Laminas\Json\Json;
 
-#[\AllowDynamicProperties]
 abstract class AbstractChart
 {
     // Default options
@@ -52,6 +51,9 @@ abstract class AbstractChart
     abstract public function render();
 
     /**
+     * Magic setter for chart-level options, storing the argument list under the option name.
+     * Only declared properties are rendered; undeclared names are kept but trigger a deprecation.
+     *
      * @param string $name
      * @param mixed  $value
      *
@@ -59,6 +61,14 @@ abstract class AbstractChart
      */
     public function __call($name, $value)
     {
+        if (!property_exists($this, $name)) {
+            @trigger_error(sprintf(
+                'Since ob/highcharts-bundle 1.7.0.2: Setting the undeclared option "%s" on %s is deprecated, it is stored but never rendered.',
+                $name,
+                static::class
+            ), \E_USER_DEPRECATED);
+        }
+
         $this->$name = $value;
 
         return $this;
@@ -112,7 +122,7 @@ abstract class AbstractChart
         $result = "";
 
         if (!empty($chartOption)) {
-            // Zend\Json is used in place of json_encode to preserve JS anonymous functions
+            // Laminas\Json is used in place of json_encode to preserve JS anonymous functions
             $result .= $name . ": " . Json::encode($chartOption[0], false, array('enableJsonExprFinder' => true)) . ", \n";
         }
 
@@ -130,7 +140,7 @@ abstract class AbstractChart
         $result = "";
 
         if (get_object_vars($chartOption)) {
-            // Zend\Json is used in place of json_encode to preserve JS anonymous functions
+            // Laminas\Json is used in place of json_encode to preserve JS anonymous functions
             $result .= $name . ": " . Json::encode($chartOption, false, array('enableJsonExprFinder' => true)) . ",\n";
         }
 

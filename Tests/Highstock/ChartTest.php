@@ -4,9 +4,12 @@ namespace Ob\HighchartsBundle\Tests\Highstock;
 
 use Ob\HighchartsBundle\Highcharts\Highstock;
 use PHPUnit\Framework\TestCase;
+use Symfony\Bridge\PhpUnit\ExpectDeprecationTrait;
 
 class ChartTest extends TestCase
 {
+    use ExpectDeprecationTrait;
+
     protected $chart;
 
     protected function setUp(): void
@@ -251,5 +254,19 @@ class ChartTest extends TestCase
     public function testZoomType()
     {
         $this->markTestIncomplete();
+    }
+
+    /**
+     * noData is declared on Highchart only, so on Highstock it is deprecated and dropped
+     *
+     * @group legacy
+     */
+    public function testNoDataIsDeprecatedOnHighstock()
+    {
+        $this->expectDeprecation('Since ob/highcharts-bundle 1.7.0.2: Setting the undeclared option "noData" on Ob\HighchartsBundle\Highcharts\Highstock is deprecated%S');
+
+        $this->chart->noData(array('position' => 'center'));
+
+        $this->assertStringNotContainsString('noData', $this->chart->render());
     }
 }

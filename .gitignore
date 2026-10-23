@@ -5,3 +5,4 @@ composer.phar
 php-cs-fixer.phar
 
 vendor
+.phpunit.result.cache
